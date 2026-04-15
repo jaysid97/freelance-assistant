@@ -37,7 +37,7 @@ def process_user_intent(user_input: str) -> Optional[Dict[str, Any]]:
         """
         
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.5-flash',
             contents=f"{system_prompt}\n\nUser Input: {user_input}",
             config=types.GenerateContentConfig(
                 response_mime_type="application/json"

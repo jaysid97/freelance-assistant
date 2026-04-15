@@ -11,7 +11,7 @@ st.set_page_config(page_title="Freelance Assistant Demo", page_icon="🤖", layo
 
 st.title("🤖 Freelance Project Management Assistant")
 st.markdown("*(Simulated Live Demo for Hackathon Submission)*")
-st.write("This interactive demo uses **Gemini 1.5 Flash** to extract context. Unlike the local CLI tool, it safely skips hitting actual Google APIs to keep your personal data secure.")
+st.write("This interactive demo uses **Gemini 2.5 Flash** to extract context. Unlike the local CLI tool, it safely skips hitting actual Google APIs to keep your personal data secure.")
 
 st.divider()
 
