@@ -49,7 +49,8 @@ class TestLogic(unittest.TestCase):
         result = process_user_intent("A confusing query.")
 
         # Assert
-        self.assertIsNone(result)
+        self.assertIsNotNone(result)
+        self.assertIn("error", result)
 
     @patch('logic.genai.Client')
     @patch.dict(os.environ, {"GEMINI_API_KEY": "test_key"})

@@ -48,13 +48,26 @@ def process_user_intent(user_input: str) -> Optional[Dict[str, Any]]:
         }}
         """
         
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=f"{system_prompt}\n\nUser Input: {clean_input}",
-            config=types.GenerateContentConfig(
-                response_mime_type="application/json"
-            )
-        )
+        import time
+        max_retries = 3
+        response = None
+        for attempt in range(max_retries):
+            try:
+                response = client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=f"{system_prompt}\n\nUser Input: {clean_input}",
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json"
+                    )
+                )
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    logger.warning(f"Security/Efficiency: Gemini API overload detected (attempt {attempt+1}). Retrying... Error: {e}")
+                    time.sleep(2)
+                else:
+                    logger.error(f"Failed to process intent with Gemini after {max_retries} attempts.")
+                    raise e
         
         parsed_data = json.loads(response.text)
         return parsed_data

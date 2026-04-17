@@ -10,18 +10,18 @@ A Python-based Agentic AI assistant built specifically to improve the physical e
 Our approach is to use the lightweight, fast `gemini-1.5-flash` model as a dynamic "Context-Engine". Rather than forcing the user to navigate a complex dashboard, the user simply inputs a raw, natural language thought or problem. The logic engine parses this unstructured input, dynamically determines the user's intent (e.g., scheduling a meeting, setting a task), and extracts crucial metadata (datetime, client information, action items). Based on the resulting structured JSON, a lightweight decision tree sequentially executes appropriate real-world actions across Google Calendar, Gmail, and Google Tasks.
 
 ## How the Solution Works
-1. **Intake**: You provide a single unstructured input. (e.g., *"I just got an email from Client X about a meeting on Friday."*)
-2. **Contextual Analysis**: The `Context-Engine` (`logic.py`) utilizes Google Gemini to classify your intent and automatically extract the JSON parameters (client details, standardized ISO datetimes, task summaries).
+1. **Intake**: You provide a single unstructured input. (e.g., *"I need support at section 104 because it is overcrowded."*)
+2. **Contextual Analysis**: The `Context-Engine` (`logic.py`) utilizes Google Gemini to classify your intent and automatically extract the JSON parameters (stadium location, standardized datetimes, support summaries).
 3. **Smart Decision Engine** (`main.py`):
-    - **Verify Availability**: Looks up the timeframe on your Google Calendar (`services.py`). If there's a conflict, the automation smartly halts.
-    - **Automated Drafting**: If the calendar is clear, a tailored reply is dynamically drafted directly in your Gmail Drafts.
-    - **Action Item Creation**: Creates a Google Task contextualized around the meeting so you remember to prepare.
+    - **Verify Availability**: Looks up the timeframe on your Google Calendar (`services.py`). If there's an event conflict during the game, the automation smartly halts.
+    - **Automated Drafting**: If support is needed, a tailored ticketing report is dynamically drafted directly in your Gmail Drafts.
+    - **Action Item Creation**: Creates a Google Task contextualized around crowd movement or wait-times so you remember to assist attendees.
 
 ## Assumptions Made
 To properly run this application, the following assumptions are made regarding the environment:
 1. **API Keys**: A valid Google Gemini API key is available in the `.env` file under `GEMINI_API_KEY`.
 2. **Google Cloud Credentials**: A `credentials.json` file is present in the root directory, properly configured for an OAuth client ID with the following API scopes enabled: `Calendar API`, `Gmail API`, and `Tasks API`.
-3. **Calendar**: The user relies heavily on their `primary` Google Calendar for scheduling.
+3. **Event Schedule**: The stadium operator relies heavily on a `primary` Google Calendar for event pacing scheduling.
 
 ## Getting Started
 

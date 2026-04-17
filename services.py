@@ -1,5 +1,6 @@
 import os
 import logging
+from functools import lru_cache
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -15,6 +16,7 @@ SCOPES = [
 
 logger = logging.getLogger(__name__)
 
+@lru_cache(maxsize=1)
 def get_credentials() -> Optional[Credentials]:
     """Handles Google OAuth2 authentication."""
     creds = None

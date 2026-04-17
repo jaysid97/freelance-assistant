@@ -20,9 +20,16 @@ st.write("This interactive demo uses **Gemini 2.5 Flash** to extract context. Un
 
 st.divider()
 
-user_input = st.text_area("How can I help you today? (e.g. 'I need support at section 104 because it is overcrowded' or 'Remind me to get food during halftime at 2 PM')", height=100)
+user_input = st.text_area(
+    "How can I help you today?", 
+    placeholder="e.g. 'I need support at section 104 because it is overcrowded' or 'Remind me to get food during halftime at 2 PM'", 
+    height=100,
+    help="Type any regular phrasing here. Our AI handles the routing.",
+    label_visibility="visible",
+    key="stadium_text_input"
+)
 
-if st.button("Submit to Context-Engine", type="primary"):
+if st.button("Submit to Context-Engine", type="primary", use_container_width=True, help="Process the text using Gemini AI"):
     if not user_input.strip():
         st.warning("Please enter some text.")
     else:
