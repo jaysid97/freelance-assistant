@@ -16,7 +16,7 @@ def cached_process_user_intent(user_input_str):
 
 st.markdown("<h1 aria-label='Stadium Concierge Assistant'>🏟️ Stadium Concierge Assistant</h1>", unsafe_allow_html=True)
 st.markdown("<p aria-label='Simulated Live Demo for Hackathon Submission'><em>(Simulated Live Demo for Hackathon Submission - Sporting Venues)</em></p>", unsafe_allow_html=True)
-st.write("This interactive demo uses **Gemini 2.5 Flash** to extract context. Unlike the local CLI tool, it safely skips hitting actual Google APIs to keep your personal data secure.")
+st.write("This interactive demo uses **Gemini 2.0 Flash** to extract context. Unlike the local CLI tool, it safely skips hitting actual Google APIs to keep your personal data secure.")
 
 st.divider()
 
