@@ -63,8 +63,8 @@ def process_user_intent(user_input: str) -> Optional[Dict[str, Any]]:
                 break
             except Exception as e:
                 if attempt < max_retries - 1:
-                    logger.warning(f"Security/Efficiency: Gemini API overload detected (attempt {attempt+1}). Retrying... Error: {e}")
-                    time.sleep(2)
+                    logger.warning(f"Security/Efficiency: Gemini API overload detected (attempt {attempt+1}). Retrying in 5s... Error: {e}")
+                    time.sleep(5)
                 else:
                     logger.error(f"Failed to process intent with Gemini after {max_retries} attempts.")
                     raise e

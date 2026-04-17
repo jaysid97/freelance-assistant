@@ -39,7 +39,9 @@ if st.button("Submit to Context-Engine", type="primary", use_container_width=Tru
         if not intent_data:
             st.error("Failed to process the input. Make sure GEMINI_API_KEY is present in the environment (.env file).")
         elif intent_data.get('error'):
+            cached_process_user_intent.clear()
             st.error(intent_data.get('error'))
+            st.warning("⚠️ The server was overloaded, so I have cleared the cache. Please click Submit again to re-attempt!")
         else:
             intent = intent_data.get('intent', 'unknown')
             st.success(f"**Intent Recognized:** `{intent.upper()}`")
